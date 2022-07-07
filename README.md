@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+- Q1. 평균 평점 state를 메인 컴포넌트에 두셨나요, 하위 컴포넌트인 평균 평점 컴포넌트에 두셨나요?
+(state와 props 개념을 떠올려 보세요)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  메인 컴포넌트에 추가하였습니다.
 
-## Available Scripts
 
-In the project directory, you can run:
+- 선택하신 방식의 장단점은 무엇이라 생각하시나요?
 
-### `npm start`
+  별도의 컴포넌트 파일을 구성하지 않아도 되서, 관리의 난이도가 상대적으로 낮은 것 같습니다. 필욜한 변수들이나 스타일을 사용할 때 아무 어려움 없이 사용할 수 있었습니다. 하지만 규모가 더 큰 웹사이트를 제작해야 한다면, 별도로 컴포넌트를 구성하는 것이 오히려 관리가 쉬울 것이라고 생각이 들었습니다.
+  단점이라면 메인 컴포넌트의 코드가 길어진다는 것? 정도가 있을 것 같습니다.
+    
+    
+- 평균 평점과 리셋 버튼을 추가할 때 어떤 고민을 하셨나요?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  평균평점을 구할 때에 고민했던 것은 각 랜덤 평점들을 어떻게 가져와야하는가의 문제였습니다. 처음에는 Ref를 이용해서 map의 리턴할 때 랜덤 평점을 생성하고, 그 값들을 가져와 평균 평점을 구하려 시도했지만, 어려움을 겪었고, 결국 이 방식으로는 평점을 가져올 수 없어 실패했습니다. 그래서 이번에 새로 배운 useState를 이용해 랜덤 평점들을 모아놓은 배열을 만든 뒤, 그 배열을 이용해 카드를 구성했고, 해당 배열을 Reduce함수를 이용해 합계를 구하는 식으로 평균 평점을 구할 수 있었습니다.
+  리셋버튼은 상대적으로 고민이 적었습니다. useState에 정의된 함수를 이용해 배열의 값을 0으로만 만들어주면 되는 문제였으니까요. 저번주에 풀었던 알고리즘이 도움이 되었습니다.
+  
+  
+- Q2. 과제 구현 간, 상태관리를 위해 useState를 사용해보고 배운 점을 적어주세요.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  useState를 선언할 때, 자동적으로 해당 값을 변화시킬 수 있는 함수가 생성되어, 매우 편하게 작업할 수 있었습니다.
+  
+  
+- Q3. 랜덤 숫자가 아닌 평점 남기기 페이지에서 입력한 숫자를 반영하기 위해서는 어떻게 해야 할까요?
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  평점 남기기 페이지에 입력한 숫자가 메인 페이지에 반영되기 위해서는 두 컴포넌트가 데이터값을 주고 받을 수 있는 환경이 구축되어야 합니다. 하지만 Main 컴포넌트와 Detail 컴포넌트는 부모 자식 관계가 아니기 때문에, 데이터값을 주고 받기가 불가능합니다.(단방향 데이터 바인딩) 형제 관계인 컴포넌트끼리 데이터를 주고 받기 위해서는 전역 데이터 관리수단인 '리덕스'를 사용해서 두 컴포넌트가 리덕스에 저장되어 있는 데이터를 참조하고, 변경하도록 만들어야 합니다.
